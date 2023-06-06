@@ -11,7 +11,7 @@ import {
   Button
 } from './styles'
 
-const CategoryCarousel = () => {
+export const CategoryCarousel = () => {
   const [categories, setCategories] = useState([])
 
   useEffect(() => {
@@ -52,5 +52,3 @@ const CategoryCarousel = () => {
     </Container>
   )
 }
-
-export default CategoryCarousel

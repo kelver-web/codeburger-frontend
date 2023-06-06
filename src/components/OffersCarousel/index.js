@@ -12,7 +12,7 @@ import {
   Button
 } from './styles'
 
-const OffersCarousel = () => {
+export const OffersCarousel = () => {
   const [offers, setOffers] = useState([])
 
   useEffect(() => {
@@ -61,5 +61,3 @@ const OffersCarousel = () => {
     </Container>
   )
 }
-
-export default OffersCarousel

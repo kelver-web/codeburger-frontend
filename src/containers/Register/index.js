@@ -7,7 +7,7 @@ import * as Yup from 'yup'
 
 import Logo from '../../assets/logo.svg'
 import RegisterImage from '../../assets/register-image.svg'
-import Button from '../../components/Button'
+import { Button } from '../../components'
 import api from '../../services/api'
 import {
   Container,

@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import Button from '../Button'
+import { Button } from '../Button'
 import { Container, Image, ProductName, ProductPrice } from './styles'
 
-const CardProduct = ({ product }) => {
+export const CardProduct = ({ product }) => {
   return (
     <Container>
       <Image src={product.url} alt="imagem do produto" />
@@ -16,8 +16,6 @@ const CardProduct = ({ product }) => {
     </Container>
   )
 }
-
-export default CardProduct
 
 CardProduct.propTypes = {
   product: PropTypes.object

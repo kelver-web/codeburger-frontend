@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 import ProductLogo from '../../assets/products-logo.svg'
-import CardProduct from '../../components/CardProduct'
+import { CardProduct } from '../../components'
 import api from '../../services/api'
 import formatCurrency from '../../utils/formatCurrency'
 import {
