@@ -20,7 +20,7 @@ import {
   ErrrorMensage
 } from './styles'
 
-const Login = () => {
+export const Login = () => {
   const navigate = useNavigate()
   const { putUserData } = useUser()
 
@@ -114,4 +114,3 @@ const Login = () => {
     </Container>
   )
 }
-export default Login

@@ -4,7 +4,7 @@ import HomeLogo from '../../assets/home-image.svg'
 import { CategoryCarousel, OffersCarousel } from '../../components'
 import { Container, HomeImage } from './styles'
 
-const Home = () => {
+export const Home = () => {
   return (
     <Container>
       <HomeImage src={HomeLogo} alt="imagem da home page" />
@@ -13,5 +13,3 @@ const Home = () => {
     </Container>
   )
 }
-
-export default Home

@@ -19,7 +19,7 @@ import {
   ErrrorMensage
 } from './styles'
 
-const Register = () => {
+export const Register = () => {
   const schema = Yup.object().shape({
     name: Yup.string().required('O seu nome é obrigatório'),
     email: Yup.string()
@@ -124,4 +124,3 @@ const Register = () => {
     </Container>
   )
 }
-export default Register

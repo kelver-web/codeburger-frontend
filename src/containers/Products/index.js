@@ -12,7 +12,7 @@ import {
   ProductsContainer
 } from './styles'
 
-const Products = () => {
+export const Products = () => {
   const [categories, setCategories] = useState([])
   const [products, setProducts] = useState([])
   const [filterdProducts, setFilterdProducts] = useState([])
@@ -79,5 +79,3 @@ const Products = () => {
     </Container>
   )
 }
-
-export default Products
