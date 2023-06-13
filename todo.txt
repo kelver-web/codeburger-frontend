@@ -1,6 +1,1 @@
-Criando cards de produtos
-
-aula 02 cap 2
-
-
-
+Criando lógica do resumo do carrinho 
