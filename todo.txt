@@ -1,1 +1,11 @@
 Criando lógica do resumo do carrinho 
+
+
+
+Uma observação: 
+    Se o pedido estiver vazio e tiver so a taxa de entrega, não deixar o cliente realizar o pedido (só com a taxa da entrega) corrigir esse erro.
+
+
+
+
+Deslogando o usuário 

@@ -34,10 +34,8 @@ export const CartProvider = ({ children }) => {
     const newCart = cartProducts.filter(product => product.id !== productId)
 
     if (newCart) {
-      alert('tem certeza que gostaria de deletar esse produto!')
       setCartProducts(newCart)
       await updatLocalStore(newCart)
-
       toast.success('Produto deletado com sucesso!')
     }
   }
