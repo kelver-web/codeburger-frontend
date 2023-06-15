@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom'
 
 import Cart from '../../assets/cart.png'
 import Person from '../../assets/person.png'
+import { useUser } from '../../hooks/UserContext'
 import {
   Container,
   ContainerLeft,
@@ -14,8 +15,14 @@ import {
 } from './styles'
 
 export const Header = () => {
+  const { logout, userData } = useUser()
   const navigate = useNavigate()
   const location = useLocation()
+
+  const logoutUser = () => {
+    logout()
+    navigate('/login')
+  }
 
   return (
     <Container>
@@ -27,7 +34,7 @@ export const Header = () => {
           Home
         </PageLink>
         <PageLink
-          onClick={() => navigate('/produtos')}
+          onClick={() => navigate('/produtos', { state: { categoryId: 0 } })}
           isActive={location.pathname.includes('produtos')}
         >
           Ver produtos
@@ -48,9 +55,9 @@ export const Header = () => {
         </PageLink>
 
         <ContainerText>
-          <p>Olá Kelver</p>
+          <p>Olá {userData.name}</p>
 
-          <PageLinkExit>Sair</PageLinkExit>
+          <PageLinkExit onClick={logoutUser}>Sair</PageLinkExit>
         </ContainerText>
       </ContainerHigth>
     </Container>

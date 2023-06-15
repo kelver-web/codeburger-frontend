@@ -45,7 +45,9 @@ export const CategoryCarousel = () => {
           categories.map(category => (
             <ContainerItens key={category.id}>
               <Image src={category.url} alt="categorias" />
-              <Button>{category.name}</Button>
+              <Button to={'/produtos'} state={{ categoryId: category.id }}>
+                {category.name}
+              </Button>
             </ContainerItens>
           ))}
       </Carousel>
