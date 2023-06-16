@@ -51,14 +51,18 @@ export const Login = () => {
         pending: 'Verificando seus dados!',
         success: 'Seja bem-vindo(a)!',
         error: 'Verifique seu e-mail e senha!'
-      }
-      // { validateStatus: () => true }
+      },
+      { validateStatus: () => true }
     )
 
     putUserData(data)
 
     setTimeout(() => {
-      navigate('/')
+      if (data.admin) {
+        navigate('/pedidos')
+      } else {
+        navigate('/')
+      }
     }, 1000)
 
     //   if (status === 200 || status === 201) {

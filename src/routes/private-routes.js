@@ -1,20 +1,24 @@
 import PropTypes from 'prop-types'
 import React from 'react'
-import { Navigate, Outlet } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 
 import { Header } from '../components'
 
-const PrivateRoute = ({ component, ...rest }) => {
+const PrivateRoute = ({ children }) => {
   const user = localStorage.getItem('codeburger:userData')
 
   if (!user) {
     return <Navigate to="/login" />
   }
 
+  if (children.props.isAdmin && !JSON.parse(user).admin) {
+    return <Navigate to="/" />
+  }
+
   return (
     <>
-      <Header />
-      <Outlet {...rest} element={component} />
+      {!children.props.isAdmin && <Header />}
+      {children}
     </>
   )
 }
@@ -22,5 +26,5 @@ const PrivateRoute = ({ component, ...rest }) => {
 export default PrivateRoute
 
 PrivateRoute.propTypes = {
-  component: PropTypes.oneOfType([PropTypes.func, PropTypes.element])
+  children: PropTypes.oneOfType([PropTypes.func, PropTypes.element])
 }
