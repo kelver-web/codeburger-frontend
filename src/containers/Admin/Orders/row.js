@@ -11,6 +11,7 @@ import TableRow from '@mui/material/TableRow'
 import Typography from '@mui/material/Typography'
 import PropTypes from 'prop-types'
 import React from 'react'
+import { toast } from 'react-toastify'
 
 import api from '../../../services/api'
 import status from './order-status'
@@ -27,9 +28,11 @@ function Row({ row, orders, setOrders }) {
       const newOrders = orders.map(order => {
         return order._id === id ? { ...order, status } : order
       })
+      toast.success('Estatus atualizado com sucesso!')
       setOrders(newOrders)
     } catch (err) {
       console.error(err)
+      toast.error('Não foi possível atualizar o estatus, tente novamente')
     } finally {
       setIsLoading(false)
     }
