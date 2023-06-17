@@ -42,6 +42,14 @@ const myRoutes = () => {
           }
           path="/pedidos"
         />
+        <Route
+          element={
+            <PrivateRoute>
+              <Admin isAdmin />
+            </PrivateRoute>
+          }
+          path="/listar-produtos"
+        />
       </Routes>
     </Router>
   )
