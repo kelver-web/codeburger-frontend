@@ -51,6 +51,14 @@ const myRoutes = () => {
           }
           path={paths.Products}
         />
+        <Route
+          element={
+            <PrivateRoute>
+              <Admin isAdmin />
+            </PrivateRoute>
+          }
+          path={paths.NewProduct}
+        />
       </Routes>
     </Router>
   )
