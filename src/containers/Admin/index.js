@@ -13,7 +13,7 @@ export const Admin = () => {
 
   return (
     <Container>
-      <SideMenuAdmin />
+      <SideMenuAdmin path={location.pathname} />
       <ContainerItems>
         {location.pathname === paths.Order && <Orders />}
         {location.pathname === paths.Products && <ListProducts />}
