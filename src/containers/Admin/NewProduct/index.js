@@ -2,9 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import ReactSelect from 'react-select'
 
-import { Button } from '../../../components'
 import api from '../../../services/api'
-import { Container, Label, Input } from './styles'
+import { Container, Label, Input, ButtonStyles } from './styles'
 
 const NewProduct = () => {
   const { register, handleSubmit } = useForm()
@@ -21,17 +20,17 @@ const NewProduct = () => {
     <Container>
       <form noValidate>
         <Label>Nome</Label>
-        <Input type="text" {...register('name')} />
+        <Input type="text" {...register('name')} placeholder="Nome" />
 
         <Label>Preço</Label>
-        <Input type="number" {...register('price')} />
+        <Input type="number" {...register('price')} placeholder="Preço" />
 
         <Label>Upload da imagem</Label>
         <Input type="file" accept="image/png, image/jpeg" />
 
         <ReactSelect />
 
-        <Button>Adicionar Produto</Button>
+        <ButtonStyles>Adicionar Produto</ButtonStyles>
       </form>
     </Container>
   )
