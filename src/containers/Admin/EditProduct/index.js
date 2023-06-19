@@ -2,7 +2,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import CloudUploadIcon from '@mui/icons-material/CloudUpload'
 import React, { useEffect, useState } from 'react'
 import { useForm, Controller } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import ReactSelect from 'react-select'
 import { toast } from 'react-toastify'
 import * as Yup from 'yup'
@@ -17,28 +17,24 @@ import {
   ButtonStyles,
   LabelUpload,
   Div,
-  InputUpload
+  InputUpload,
+  ContainerInput
 } from './styles'
 
-function NewProduct() {
+function EditProduct() {
   const [fileName, setFileName] = useState(null)
   const [categories, setCategories] = useState([])
   const navigate = useNavigate()
+  const location = useLocation()
+  const {
+    state: { product }
+  } = location
 
   const schema = Yup.object().shape({
     name: Yup.string().required('Digite o nome do produto'),
     price: Yup.string().required('Digite o preço do produto'),
     category: Yup.object().required('Escolha uma categoria'),
-    file: Yup.mixed()
-      .test('required', 'Carregue um arquivo', value => {
-        return value?.length > 0
-      })
-      .test('fileSize', 'Carregue arquivos de até 2mb', value => {
-        return value[0]?.size <= 2000000
-      })
-      .test('type', 'Carregue apenas arquivos JPEG ou PNG', value => {
-        return value[0]?.type === 'image/jpeg' || value[0]?.type === 'image/png'
-      })
+    offer: Yup.bool()
   })
 
   const {
@@ -55,12 +51,16 @@ function NewProduct() {
     productDataFormData.append('price', data.price)
     productDataFormData.append('category_id', data.category.id)
     productDataFormData.append('file', data.file[0])
+    productDataFormData.append('offer', data.offer)
 
-    await toast.promise(api.post('products', productDataFormData), {
-      pending: 'Criando novo produto...',
-      error: 'Falha ao criar o produto',
-      success: 'Produto criado com sucesso'
-    })
+    await toast.promise(
+      api.put(`products/${product.id}`, productDataFormData),
+      {
+        pending: 'Editando novo produto...',
+        error: 'Falha ao editar o produto',
+        success: 'Produto editado com sucesso'
+      }
+    )
 
     setTimeout(() => {
       navigate(paths.ListProducts)
@@ -84,8 +84,7 @@ function NewProduct() {
           <Input
             type="text"
             {...register('name')}
-            placeholder="Nome"
-            error={errors.name?.message}
+            defaultValue={product.name}
           />
           <ErrorMessage>{errors.name?.message}</ErrorMessage>
         </div>
@@ -95,14 +94,13 @@ function NewProduct() {
           <Input
             type="number"
             {...register('price')}
-            placeholder="Preço"
-            error={errors.price?.message}
+            defaultValue={product.price}
           />
           <ErrorMessage>{errors.price?.message}</ErrorMessage>
         </div>
 
         <div>
-          <LabelUpload error={errors.file?.message}>
+          <LabelUpload>
             {fileName || (
               <>
                 <CloudUploadIcon />
@@ -119,24 +117,23 @@ function NewProduct() {
               }}
             />
           </LabelUpload>
-          <ErrorMessage className="errorMessage">
-            {errors.file?.message}
-          </ErrorMessage>
+          <ErrorMessage>{errors.file?.message}</ErrorMessage>
         </div>
 
-        <Div error={errors.category?.message}>
+        <Div>
           <Controller
             name="category"
             control={control}
+            defaultValue={product.category}
             render={({ field }) => {
               return (
                 <ReactSelect
-                  className="select"
                   {...field}
                   options={categories}
                   getOptionLabel={cat => cat.name}
                   getOptionValue={cat => cat.id}
                   placeholder="Categorias"
+                  defaultValue={product.category}
                 />
               )
             }}
@@ -144,10 +141,19 @@ function NewProduct() {
           <ErrorMessage>{errors.category?.message}</ErrorMessage>
         </Div>
 
-        <ButtonStyles>Adicionar Produto</ButtonStyles>
+        <ContainerInput>
+          <input
+            type="checkbox"
+            {...register('offer')}
+            defaultChecked={product.offer}
+          />
+          <Label>Produto em Oferta?</Label>
+        </ContainerInput>
+
+        <ButtonStyles>Editar Produto</ButtonStyles>
       </form>
     </Container>
   )
 }
 
-export default NewProduct
+export default EditProduct
