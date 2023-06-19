@@ -19,8 +19,6 @@ const Orders = () => {
   const [filteredOrders, setFilteredOrders] = useState([])
   const [activeStatus, setActiveStatus] = useState(1)
 
-  console.log(orders)
-
   useEffect(() => {
     const loadOrders = async () => {
       const { data } = await api.get('orders')
@@ -108,6 +106,14 @@ const Orders = () => {
           </TableBody>
         </Table>
       </TableContainer>
+      <div style={{ marginTop: '5px' }}>
+        <h4>
+          Total de Pedidos:{' '}
+          <b style={{ fontSize: '15px', fontWeight: 'normal' }}>
+            {rows.length}
+          </b>
+        </h4>
+      </div>
     </Container>
   )
 }

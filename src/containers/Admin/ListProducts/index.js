@@ -13,11 +13,17 @@ import { useNavigate } from 'react-router-dom'
 import paths from '../../../constants/paths'
 import api from '../../../services/api'
 import formatCurrency from '../../../utils/formatCurrency'
-import { Container, Img, EditIconStyles } from './styles'
+import { Container, Img, EditIconStyles, Title } from './styles'
 
 const ListProducts = () => {
   const [produtcts, setProducts] = useState()
   const navigate = useNavigate()
+  const now = new Date()
+  const day = now.getDate()
+  const month = now.getMonth() + 1
+  const year = now.getFullYear()
+  const date = `${day}/${month}/${year}`
+  console.log(produtcts)
 
   useEffect(() => {
     const loadOrders = async () => {
@@ -42,6 +48,12 @@ const ListProducts = () => {
 
   return (
     <Container>
+      <Title>
+        <h4>Listagem de Produtos </h4>
+        <h4>
+          Data: <b style={{ fontSize: '13px', fontWeight: 'normal' }}>{date}</b>
+        </h4>
+      </Title>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
           <TableHead>

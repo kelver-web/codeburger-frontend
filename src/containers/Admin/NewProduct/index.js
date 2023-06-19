@@ -79,6 +79,9 @@ function NewProduct() {
   return (
     <Container>
       <form noValidate onSubmit={handleSubmit(onSubmit)}>
+        <div style={{ textAlign: 'center', color: '#ffffff' }}>
+          <h1>Novo Produto</h1>
+        </div>
         <div>
           <Label>Nome</Label>
           <Input
