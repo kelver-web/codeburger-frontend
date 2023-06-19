@@ -7,7 +7,7 @@ import * as Yup from 'yup'
 
 import Logo from '../../assets/logo.svg'
 import RegisterImage from '../../assets/register-image.svg'
-import { Button } from '../../components'
+import { Button, ErrorMessage } from '../../components'
 import api from '../../services/api'
 import {
   Container,
@@ -15,8 +15,7 @@ import {
   ContainerItens,
   Label,
   Input,
-  SinginLink,
-  ErrrorMensage
+  SinginLink
 } from './styles'
 
 export const Register = () => {
@@ -80,7 +79,7 @@ export const Register = () => {
             placeholder="Nome"
             error={errors.name?.message}
           />
-          <ErrrorMensage>{errors.name?.message}</ErrrorMensage>
+          <ErrorMessage>{errors.name?.message}</ErrorMessage>
 
           <Label error={errors.email?.message}>Email</Label>
           <Input
@@ -89,7 +88,7 @@ export const Register = () => {
             placeholder="Email"
             error={errors.email?.message}
           />
-          <ErrrorMensage>{errors.email?.message}</ErrrorMensage>
+          <ErrorMessage>{errors.email?.message}</ErrorMessage>
 
           <Label error={errors.password?.message}>Senha</Label>
           <Input
@@ -98,7 +97,7 @@ export const Register = () => {
             placeholder="Senha"
             error={errors.password?.message}
           />
-          <ErrrorMensage>{errors.password?.message}</ErrrorMensage>
+          <ErrorMessage>{errors.password?.message}</ErrorMessage>
 
           <Label error={errors.confirmPassword?.message}>Confirme senha</Label>
           <Input
@@ -107,7 +106,7 @@ export const Register = () => {
             placeholder="Confirme senha"
             error={errors.confirmPassword?.message}
           />
-          <ErrrorMensage>{errors.confirmPassword?.message}</ErrrorMensage>
+          <ErrorMessage>{errors.confirmPassword?.message}</ErrorMessage>
 
           <Button type="submit" style={{ marginTop: 25 }}>
             Sing Up

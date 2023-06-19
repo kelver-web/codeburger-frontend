@@ -7,7 +7,7 @@ import * as Yup from 'yup'
 
 import LoginImg from '../../assets/login-image.svg'
 import Logo from '../../assets/logo.svg'
-import { Button } from '../../components'
+import { Button, ErrorMessage } from '../../components'
 import { useUser } from '../../hooks/UserContext'
 import api from '../../services/api'
 import {
@@ -16,8 +16,7 @@ import {
   ContainerItens,
   Label,
   Input,
-  SinginLink,
-  ErrrorMensage
+  SinginLink
 } from './styles'
 
 export const Login = () => {
@@ -92,7 +91,7 @@ export const Login = () => {
             placeholder="Email"
             error={errors.email?.message}
           />
-          <ErrrorMensage>{errors.email?.message}</ErrrorMensage>
+          <ErrorMessage>{errors.email?.message}</ErrorMessage>
 
           <Label>Senha</Label>
           <Input
@@ -101,7 +100,7 @@ export const Login = () => {
             placeholder="Senha"
             error={errors.password?.message}
           />
-          <ErrrorMensage>{errors.password?.message}</ErrrorMensage>
+          <ErrorMessage>{errors.password?.message}</ErrorMessage>
 
           <Button type="submit" style={{ marginTop: 75 }}>
             Sing In

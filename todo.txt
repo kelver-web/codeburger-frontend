@@ -8,4 +8,4 @@ Uma observação:
 
 
 
-Continuando a criação da nossa tabela com MUI 
+Validando formulário de criação do produto 
